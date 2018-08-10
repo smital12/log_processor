@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 
@@ -10,7 +11,7 @@ def remove_celcius_C(match):
     return match.group(1)
 
 
-def remove_SI_prefixes(match):
+def convert_num_with_SI_prefix(match):
     number = float(match.group(1))
     prefix = match.group(2)
 
@@ -30,13 +31,14 @@ def remove_SI_prefixes(match):
     return "_!_"
 
 
-def tab_delimit_datalog(inLines, testName, isADCTest=False,
-                        isHeaderEveryTime=False):
+def remove_SI_prefixes(inLines, testName, isADCTest=False,
+                       isHeaderEveryTime=False):
     # array to store desired lines
     lines = []
     isHeaderLine = False
 
-    numberWithPrefixLetter = re.compile(r'(\d+\.\d+)\s+([MKmunf])')
+    # find decimal numbers with a SI unit prefix
+    numWithSILetter = re.compile(r'(\d+\.\d+)\s+([MKmunf])')
 
     for line in inLines:
         isTestLine = False
@@ -49,13 +51,13 @@ def tab_delimit_datalog(inLines, testName, isADCTest=False,
             isHeaderLine = True
 
         if isTestLine:
-            fixedMeasureUnitsLine = numberWithPrefixLetter.sub(remove_SI_prefixes, line)
-            lines.append('\t'.join(fixedMeasureUnitsLine.split()))
+            # get rid of SI Unit prefixes, converting the decimal number
+            lineWithNoSILetters = (
+                numWithSILetter.sub(convert_num_with_SI_prefix, line))
+            lines.append('\t'.join(lineWithNoSILetters.split()))
         elif isHeaderLine:
+            # keep header lines as-is
             lines.append(line)
-        elif isADCTest and line.startswith("First 10"):
-            # lines.append(line.replace(":", "\t"))
-            lines.append("test")
 
         # indicate we've reached the end of the header and don't need to keep
         # copying lines unless they match the desired test name
@@ -65,10 +67,43 @@ def tab_delimit_datalog(inLines, testName, isADCTest=False,
     return lines
 
 
+def tab_delimit_test_lines(inLines, testName, isADCTest=False,
+                        isHeaderEveryTime=False):
+    # assumes inLines contains only header lines and test lines; no empty lines
+    # or other types of lines accounted for
+
+    # array to store desired lines
+    lines = []
+    isHeaderLine = False
+
+    for line in inLines:
+        # find start of a header section
+        if not isHeaderLine and line.startswith("Datalog report"):
+            isHeaderLine = True
+
+        if (isHeaderLine or
+           (isADCTest and line.startswith("First 10"))):
+            # keep line as-is
+            lines.append(line)
+        else:
+            # assume line is a test line
+            # convert whitespace to tabs
+            lines.append('\t'.join(line.split()))
+
+        # indicate we've reached the end of the header and don't need to keep
+        # copying lines unless they match the desired test name
+        if isHeaderLine and line.startswith("Device#:"):
+            isHeaderLine = False
+
+    return lines
+
+
 def format_header(oldHeader):
+    # convert header into tab-delimited header
     newHeader = []
     newLine = ""
     siteNumLines = []
+    siteNumString = ""
     isSiteNumLine = False
 
     for i, line in enumerate(oldHeader):
@@ -77,27 +112,26 @@ def format_header(oldHeader):
         if line.startswith("Site Number"):
             isSiteNumLine = True
 
-        # ignore empty lines
-        if line:
-            if isSiteNumLine:
-                siteNumLines.append(line.replace(":", ""))
+        if isSiteNumLine:
+            siteNumLines.append(line.replace(":", ""))
+        else:
+            # add key to date/time string, which is always second line of
+            # header
+            if i == 1:
+                newLine = "Time\t" + line
+            # convert delimiters and remove excess whitespace
             else:
-                # add key to date/time string, which is always second line of
-                # header
-                if i == 1:
-                    newLine = "Time\t" + line
-                # convert delimiters and remove excess whitespace
-                else:
-                    newLine = "\t".join(striplist(line.split(":")))
+                newLine = "\t".join(striplist(line.split(":")))
 
-                newHeader.append(newLine)
+            newHeader.append(newLine)
 
         # we've reached end of site number lines, join them as a single line
-        if isSiteNumLine and not line:
+        if isSiteNumLine and oldHeader[i+1].startswith("Device#"):
             isSiteNumLine = False
             # remove spaces from list of sites and join to label
-            newHeader.append('Site Number\t' +
-                             ''.join((''.join(siteNumLines[1:])).split()))
+            siteNumString = ''.join(siteNumLines[1:])
+            siteNumString = siteNumString.replace(' ', '')
+            newHeader.append('Site Number\t' + siteNumString)
 
     return newHeader
 
@@ -109,22 +143,24 @@ def format_all_headers(inLines, isHeaderEveryTime=False):
 
     for line in inLines:
 
-        # find start of header section, we'll flag all lines in the header so
-        # they're copied over
+        # find start of a header section
         if not isHeaderLine and line.startswith("Datalog report"):
+            oldHeader.clear()
             isHeaderLine = True
 
         if isHeaderLine:
+            # store header lines for processing
+            # don't copy to output
             oldHeader.append(line)
         else:
+            # copy line as-is
             lines.append(line)
 
-        # indicate we've reached the end of the header and don't need to keep
-        # copying lines unless they match the desired test name
+        # check if this is last line in header
         if isHeaderLine and line.startswith("Device#:"):
             isHeaderLine = False
+            # add the formatted header as list of strings to output
             lines.extend(format_header(oldHeader))
-            oldHeader.clear()
 
     return lines
 
@@ -146,10 +182,10 @@ def get_header_and_test_lines(inLines, testName, isADCTest=False,
         elif not isHeaderLine and line.startswith("Datalog report"):
             isHeaderLine = True
 
-        # copy only desired lines
-        if isTestLine or \
-           isHeaderLine or \
-           (isADCTest and "First 10" in line):
+        # copy only desired lines, skip blank header lines
+        if (isTestLine or
+           (isHeaderLine and line.strip()) or
+           (isADCTest and "First 10" in line)):
             lines.append(line)
 
         # indicate we've reached the end of the header and don't need to keep
@@ -160,7 +196,7 @@ def get_header_and_test_lines(inLines, testName, isADCTest=False,
     return striplist(lines)
 
 
-def move_missing_code_list_to_result_line(inLines):
+def move_MCs_list_to_test_line(inLines):
     # array to store desired lines
     lines = []
     missingCodesList = ""
@@ -185,7 +221,10 @@ def move_header_into_lines(inLines, isADCTest=True, isHeaderEveryTime=False):
     isHeaderLine = False
     tempsWithCelcius = re.compile(r'(\d+)C\b')
 
-    for line in inLines:
+    # format headers into tab-delimited lines
+    inLinesBetterHeaders = format_all_headers(inLines, isHeaderEveryTime)
+
+    for line in inLinesBetterHeaders:
 
         # find start of header section, we'll flag all lines in the header so
         # they're copied over
@@ -241,32 +280,67 @@ def move_header_into_lines(inLines, isADCTest=True, isHeaderEveryTime=False):
     return lines
 
 
-for filename in os.listdir("."):
-    if filename.endswith(".txt"):
-        # open datalog file and a file to write the results
-        datalog = open(filename, "r").readlines()
+def main(filename, testname, isADCTest, isHeaderEveryTime):
 
-        # filter down to headers and test result lines
-        filteredLines = get_header_and_test_lines(datalog, "adclin",
-                                                  isADCTest=True,
-                                                  isHeaderEveryTime=True)
+    print('Processing "' + filename + '" for "' + testname + '"')
 
-        # format the filtered lines
-        formattedLines = tab_delimit_datalog(filteredLines, "adclin",
-                                             isADCTest=True,
-                                             isHeaderEveryTime=True)
+    # open datalog file and a file to write the results
+    datalog = open(filename, "r").readlines()
+
+    # filter down to headers and test result lines
+    filteredLines = get_header_and_test_lines(datalog, testname, isADCTest,
+                                              isHeaderEveryTime)
+
+    # format the filtered lines
+    formattedLines = tab_delimit_test_lines(filteredLines, testname, isADCTest,
+                                            isHeaderEveryTime)
+
+    if isADCTest:
         # move missing code list
-        newLines = move_missing_code_list_to_result_line(formattedLines)
+        formattedLines = move_MCs_list_to_test_line(formattedLines)
 
-        # take care of headers
-        fixedHeaderLines = format_all_headers(newLines,
-                                              isHeaderEveryTime=True)
-        # take care of headers
-        myLines = move_header_into_lines(fixedHeaderLines,
-                                         isADCTest=True,
-                                         isHeaderEveryTime=True)
+    # take care of headers
+    formattedLines = move_header_into_lines(formattedLines, isADCTest,
+                                            isHeaderEveryTime)
 
-        # write to output file
-        # joinedLines = '\n'.join(formattedLines)
-        joinedLines = '\n'.join(myLines)
-        open(filename + "_cleaned", "w").write(joinedLines)
+    # write to output file
+    joinedLines = '\n'.join(formattedLines)
+    outputFile = filename + "_cleaned"
+    open(outputFile, "w").write(joinedLines)
+    print('Finished, see: ' + outputFile)
+
+    return
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=(
+        'Process Teradyne IG-XL data logs into tab-delimited files for '
+        'easy import into data analysis tools. Logs should have header '
+        'before very flow'))
+    parser.add_argument('testname', type=str,
+                        help=(
+                            'string to ID desired lines e.g., some/all of'
+                            ' the test name'))
+    parser.add_argument('filenames', nargs='+', type=str,
+                        help='name of input file')
+
+    parser.add_argument('--ADC', dest='isADCTest',
+                        action='store_true',
+                        help=(
+                            'ADC test results desired, include First 10 '
+                            'missing codes list at end of MC results line '
+                            '(default: test is not an ADC test)'))
+    parser.set_defaults(isADCTest=False)
+
+    # parser.add_argument('--header-every-time',
+    #                     dest='isHeaderEveryTime', action='store_true',
+    #                     help='datalog has a header before every flow')
+    # parser.add_argument('--no-header-every-time',
+    #                     dest='isHeaderEveryTime', action='store_false',
+    #                     help='header is/may be missing before flow(s)')
+    parser.set_defaults(isHeaderEveryTime=True)
+
+    args = parser.parse_args()
+
+    for filename in args.filenames:
+        main(filename, args.testname, args.isADCTest, args.isHeaderEveryTime)
