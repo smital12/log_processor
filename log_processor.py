@@ -31,6 +31,36 @@ def convert_num_with_SI_prefix(match):
     return "_!_"
 
 
+def remove_LSBs(inLines, testName, isADCTest=False,
+                isHeaderEveryTime=False):
+    # array to store desired lines
+    lines = []
+    isHeaderLine = False
+
+    for line in inLines:
+        isTestLine = False
+
+        if testName in line:
+            isTestLine = True
+        # find start of header section, we'll flag all lines in the header so
+        # they're copied over
+        elif not isHeaderLine and line.startswith("Datalog report"):
+            isHeaderLine = True
+
+        if isTestLine:
+            lines.append('\t'.join((line.replace('LSB', '')).split()))
+        elif isHeaderLine:
+            # keep header lines as-is
+            lines.append(line)
+
+        # indicate we've reached the end of the header and don't need to keep
+        # copying lines unless they match the desired test name
+        if isHeaderLine and line.startswith("Device#:"):
+            isHeaderLine = False
+
+    return lines
+
+
 def remove_SI_prefixes(inLines, testName, isADCTest=False,
                        isHeaderEveryTime=False):
     # array to store desired lines
@@ -38,7 +68,7 @@ def remove_SI_prefixes(inLines, testName, isADCTest=False,
     isHeaderLine = False
 
     # find decimal numbers with a SI unit prefix
-    numWithSILetter = re.compile(r'(\d+\.\d+)\s+([MKmunf])')
+    numWithSILetter = re.compile(r'(\d+\.\d+)\t([MKmunf])')
 
     for line in inLines:
         isTestLine = False
@@ -61,14 +91,14 @@ def remove_SI_prefixes(inLines, testName, isADCTest=False,
 
         # indicate we've reached the end of the header and don't need to keep
         # copying lines unless they match the desired test name
-        if isHeaderLine and line.startswith("    Device#:"):
+        if isHeaderLine and line.startswith("Device#:"):
             isHeaderLine = False
 
     return lines
 
 
 def tab_delimit_test_lines(inLines, testName, isADCTest=False,
-                        isHeaderEveryTime=False):
+                           isHeaderEveryTime=False):
     # assumes inLines contains only header lines and test lines; no empty lines
     # or other types of lines accounted for
 
@@ -113,6 +143,7 @@ def format_header(oldHeader):
             isSiteNumLine = True
 
         if isSiteNumLine:
+            # store site numbers, don't write them yet
             siteNumLines.append(line.replace(":", ""))
         else:
             # add key to date/time string, which is always second line of
@@ -294,6 +325,12 @@ def main(filename, testname, isADCTest, isHeaderEveryTime):
     # format the filtered lines
     formattedLines = tab_delimit_test_lines(filteredLines, testname, isADCTest,
                                             isHeaderEveryTime)
+
+    formattedLines = remove_SI_prefixes(formattedLines, testname, isADCTest,
+                                        isHeaderEveryTime)
+
+    formattedLines = remove_LSBs(formattedLines, testname, isADCTest,
+                                 isHeaderEveryTime)
 
     if isADCTest:
         # move missing code list
