@@ -68,7 +68,7 @@ def remove_SI_prefixes(inLines, testName, isADCTest=False,
     isHeaderLine = False
 
     # find decimal numbers with a SI unit prefix
-    numWithSILetter = re.compile(r'(\d+\.\d+)\t([MKmunf])')
+    numWithSILetter = re.compile(r'(\d+\.\d+)\t([MKmunf])\b')
 
     for line in inLines:
         isTestLine = False
@@ -196,6 +196,20 @@ def format_all_headers(inLines, isHeaderEveryTime=False):
     return lines
 
 
+def get_test_lines(inLines, testName, isADCTest=False,
+                   isHeaderEveryTime=False):
+    # array to store desired lines
+    lines = []
+
+    for line in inLines:
+        if (testName in line or
+           (isADCTest and "First 10" in line)):
+            # copy desired lines
+            lines.append(line)
+
+    return striplist(lines)
+
+
 def get_header_and_test_lines(inLines, testName, isADCTest=False,
                               isHeaderEveryTime=False):
     # array to store desired lines
@@ -281,34 +295,51 @@ def move_header_into_lines(inLines, isADCTest=True, isHeaderEveryTime=False):
             isHeaderLine = False
             headerDataString = '\t'.join(headerData)
 
-        headerLabelRow = ("DateTime\t"
-                          "Program Name\t"
-                          "Job Name\t"
-                          "Lot\t"
-                          "Operator\t"
-                          "Test Mode\t"
-                          "Node Name\t"
-                          "Part Type\t"
-                          "Channel Map\t"
-                          "Environment\t"
-                          "Site Numbers\t"
-                          "Device#\t"
-                          "Number\t"
-                          "Site\t"
-                          "Result\t"
-                          "Test Name\t"
-                          "Pin\t"
-                          "Channel\t"
-                          "Low\t"
-                          "Measured\t"
-                          "High\t"
-                          "Force\t"
-                          "Loc\t")
-        if isADCTest:
-            headerLabelRow += "First 10 Missing Codes"
-
-    lines.insert(0, headerLabelRow)
     return lines
+
+
+def get_header(isADCTest, isHeaderEveryTime):
+    if isHeaderEveryTime:
+        return get_full_header(isADCTest)
+    else:
+        return get_parametric_header(isADCTest)
+
+
+def get_full_header(isADCTest):
+    headerLabelRow = ("DateTime\t"
+                      "Program Name\t"
+                      "Job Name\t"
+                      "Lot\t"
+                      "Operator\t"
+                      "Test Mode\t"
+                      "Node Name\t"
+                      "Part Type\t"
+                      "Channel Map\t"
+                      "Environment\t"
+                      "Site Numbers\t"
+                      "Device#\t")
+
+    headerLabelRow += get_parametric_header(isADCTest)
+
+    return headerLabelRow
+
+
+def get_parametric_header(isADCTest):
+    parametricHeader = ("Number\t"
+                        "Site\t"
+                        "Result\t"
+                        "Test Name\t"
+                        "Pin\t"
+                        "Channel\t"
+                        "Low\t"
+                        "Measured\t"
+                        "High\t"
+                        "Force\t"
+                        "Loc")
+    if isADCTest:
+        parametricHeader += "\tFirst 10 Missing Codes"
+
+    return parametricHeader
 
 
 def main(filename, testname, isADCTest, isHeaderEveryTime):
@@ -318,33 +349,46 @@ def main(filename, testname, isADCTest, isHeaderEveryTime):
     # open datalog file and a file to write the results
     datalog = open(filename, "r").readlines()
 
-    # filter down to headers and test result lines
-    filteredLines = get_header_and_test_lines(datalog, testname, isADCTest,
-                                              isHeaderEveryTime)
+    # get the desired lines
+    if isHeaderEveryTime:
+        filteredLines = get_header_and_test_lines(datalog, testname, isADCTest,
+                                                  isHeaderEveryTime)
+    else:
+        filteredLines = get_test_lines(datalog, testname, isADCTest,
+                                       isHeaderEveryTime)
 
     # format the filtered lines
     formattedLines = tab_delimit_test_lines(filteredLines, testname, isADCTest,
                                             isHeaderEveryTime)
 
+    # remove unit & magnitude symbols
     formattedLines = remove_SI_prefixes(formattedLines, testname, isADCTest,
                                         isHeaderEveryTime)
 
     formattedLines = remove_LSBs(formattedLines, testname, isADCTest,
                                  isHeaderEveryTime)
 
+    # move missing code list
     if isADCTest:
-        # move missing code list
         formattedLines = move_MCs_list_to_test_line(formattedLines)
 
-    # take care of headers
-    formattedLines = move_header_into_lines(formattedLines, isADCTest,
-                                            isHeaderEveryTime)
+    # move info from header blocks to columns instead
+    if isHeaderEveryTime:
+        formattedLines = move_header_into_lines(formattedLines, isADCTest,
+                                                isHeaderEveryTime)
 
-    # write to output file
-    joinedLines = '\n'.join(formattedLines)
-    outputFile = filename + "_cleaned"
-    open(outputFile, "w").write(joinedLines)
-    print('Finished, see: ' + outputFile)
+    # if we didn't find anything
+    if not formattedLines:
+        print('No lines matching testname found: ' + filename)
+    else:
+        # add the appropriate header
+        formattedLines.insert(0, get_header(isADCTest, isHeaderEveryTime))
+
+        # write to output file
+        joinedLines = '\n'.join(formattedLines)
+        outputFile = filename + "_cleaned"
+        open(outputFile, "w").write(joinedLines)
+        print('Finished ' + outputFile)
 
     return
 
@@ -354,13 +398,18 @@ if __name__ == '__main__':
         'Process Teradyne IG-XL data logs into tab-delimited files for '
         'easy import into data analysis tools. Logs should have header '
         'before very flow'))
-    parser.add_argument('testname', type=str,
-                        help=(
-                            'string to ID desired lines e.g., some/all of'
-                            ' the test name'))
-    parser.add_argument('filenames', nargs='+', type=str,
-                        help='name of input file')
 
+    # filter args
+    parser.add_argument('--filter-name', dest='nameFilter', type=str,
+                        help=(
+                            'file name filter string, ignore files without '
+                            'this string in the filename or file ending'))
+    parser.add_argument('--filter-type', dest='typeFilter', type=str,
+                        help=(
+                            'filetype filter string, ignore files not ending '
+                            'in this string'))
+
+    # ADC args
     parser.add_argument('--ADC', dest='isADCTest',
                         action='store_true',
                         help=(
@@ -369,15 +418,63 @@ if __name__ == '__main__':
                             '(default: test is not an ADC test)'))
     parser.set_defaults(isADCTest=False)
 
-    # parser.add_argument('--header-every-time',
-    #                     dest='isHeaderEveryTime', action='store_true',
-    #                     help='datalog has a header before every flow')
-    # parser.add_argument('--no-header-every-time',
-    #                     dest='isHeaderEveryTime', action='store_false',
-    #                     help='header is/may be missing before flow(s)')
+    # header args
+    parser.add_argument('--header-every-time',
+                        dest='isHeaderEveryTime', action='store_true',
+                        help=(
+                            'datalog has a header before every flow '
+                            '(default)'))
+    parser.add_argument('--no-header-every-time',
+                        dest='isHeaderEveryTime', action='store_false',
+                        help=(
+                            'header is/may be missing before flow(s)'))
     parser.set_defaults(isHeaderEveryTime=True)
+
+    # testname arg
+    parser.add_argument('-n', dest='testname', type=str, required=True,
+                        help=(
+                            'string to ID desired lines e.g., some/all of'
+                            ' the test name'))
+
+    # input files or directory
+    inputFilesGroup = parser.add_mutually_exclusive_group(required=True)
+    # filenames
+    inputFilesGroup.add_argument('-f', dest='file', nargs='+', type=str,
+                                 help='input file or files')
+    # directory args
+    inputFilesGroup.add_argument('-d', dest='dir', type=str,
+                                 help='directory of input files')
+    parser.add_argument('-r', dest='recurse', action='store_true',
+                        help='resursively search DIR')
 
     args = parser.parse_args()
 
-    for filename in args.filenames:
-        main(filename, args.testname, args.isADCTest, args.isHeaderEveryTime)
+    # get list of files, either from args, single directory, or recursevely
+    # searching a directory
+    files = []
+    if args.file:
+        files.extend(args.file)
+    if args.dir:
+        if args.recurse:
+            for dirName, subdirList, fileList in os.walk(args.dir):
+                for fName in fileList:
+                    fNameWithPath = os.path.join(dirName, fName)
+                    files.append(fNameWithPath)
+        else:
+            for fName in os.listdir(args.dir):
+                fNameWithPath = os.path.join(args.dir, fName)
+                if os.path.isfile(fNameWithPath):
+                    files.append(fNameWithPath)
+
+    if args.nameFilter:
+        files = [f for f in files if args.nameFilter in f]
+    if args.typeFilter:
+        files = [f for f in files if f.endswith(args.typeFilter)]
+
+    if not files:
+        print('no filenames given')
+
+    else:
+        for filename in files:
+            main(filename, args.testname, args.isADCTest,
+                 args.isHeaderEveryTime)
