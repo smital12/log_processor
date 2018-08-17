@@ -11,22 +11,26 @@ def remove_celcius_C(match):
     return match.group(1)
 
 
-def convert_num_with_SI_prefix(match):
-    number = float(match.group(1))
+def convert_SI_prefix_to_E_notation(match):
+    # Remove whitespace and convert SI prefix to exponent notation e.g.,
+    # 1.1234e6
+    number = match.group(1)
     prefix = match.group(2)
 
     if prefix is "M":
-        return str(number * 1000000)
+        return number + 'e6'
     elif prefix is "K":
-        return str(number * 1000)
+        return number + 'e3'
     elif prefix is "m":
-        return str(number / 1000)
+        return number + 'e-3'
     elif prefix is "u":
-        return str(number / 1000000)
+        return number + 'e-6'
     elif prefix is "n":
-        return str(number / 1000000000)
+        return number + 'e-9'
+    elif prefix is "p":
+        return number + 'e-12'
     elif prefix is "f":
-        return str(number / 1000000000000)
+        return number + 'e-15'
 
     return "_!_"
 
@@ -48,7 +52,9 @@ def remove_LSBs(inLines, testName, isADCTest=False,
             isHeaderLine = True
 
         if isTestLine:
-            lines.append('\t'.join((line.replace('LSB', '')).split()))
+            # get rid of LSB units, leaving any SI prefixes alone
+            lines.append(
+                (line.replace('\tLSB\t', '\t')).replace('LSB\t', '\t'))
         elif isHeaderLine:
             # keep header lines as-is
             lines.append(line)
@@ -83,8 +89,8 @@ def remove_SI_prefixes(inLines, testName, isADCTest=False,
         if isTestLine:
             # get rid of SI Unit prefixes, converting the decimal number
             lineWithNoSILetters = (
-                numWithSILetter.sub(convert_num_with_SI_prefix, line))
-            lines.append('\t'.join(lineWithNoSILetters.split()))
+                numWithSILetter.sub(convert_SI_prefix_to_E_notation, line))
+            lines.append(lineWithNoSILetters)
         elif isHeaderLine:
             # keep header lines as-is
             lines.append(line)
@@ -361,16 +367,16 @@ def main(filename, testname, isADCTest, isHeaderEveryTime):
     formattedLines = tab_delimit_test_lines(filteredLines, testname, isADCTest,
                                             isHeaderEveryTime)
 
-    # remove unit & magnitude symbols
-    formattedLines = remove_SI_prefixes(formattedLines, testname, isADCTest,
-                                        isHeaderEveryTime)
+    # move missing code list
+    if isADCTest:
+        formattedLines = move_MCs_list_to_test_line(formattedLines)
 
     formattedLines = remove_LSBs(formattedLines, testname, isADCTest,
                                  isHeaderEveryTime)
 
-    # move missing code list
-    if isADCTest:
-        formattedLines = move_MCs_list_to_test_line(formattedLines)
+    # remove unit & magnitude symbols
+    formattedLines = remove_SI_prefixes(formattedLines, testname, isADCTest,
+                                        isHeaderEveryTime)
 
     # move info from header blocks to columns instead
     if isHeaderEveryTime:
