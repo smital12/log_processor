@@ -1,0 +1,61 @@
+    Device#: 22
+
+
+ Number  Site Result   Test Name       Pattern
+ 1000    0    PASS     c_cont_vss      cont_vss       
+ 90000   0    PASS     w_reset_nom.0   hold_200us     
+ 90001   0    PASS     w_reset_nom.1   wft_hold_200us 
+------------------- Start Mchip Tests ------------------- 
+ 24500   0    FAIL     p_psc_rd_q3     psc_rd_q3      
+ 24700   0    PASS     p_psc_rd_u_q3   psc_rd_u_q3    
+ 20700   0    FAIL     m_devrev_rd_A3  f_devrev_rd_A3 
+ 20800   0    PASS     m_devrev_rd_A4  f_devrev_rd_A4 
+ 33000   0    PASS     m_rd_CALCFG_tm10 m_rd_cal_tm10  
+
+		Site0
+========================
+--------------- CALIBRATION REGISTERS ---------------
+FVARIANT:	FF0D
+FFRCTRIM:	FFB2
+FFRCTTRIM:	F1
+FLPRCTRIM:	FF
+FDCOTRIM:	FF
+FADTRIM:	FC
+FBGTRIM:	00
+FBGTAPTRIM:	8C5F
+FFACOPT:	FFFE
+---------------------------------------------------
+ ----------------- Read RDN Registers  
+ 17806   0    PASS     w_rd_RR0_RR1_max rd_RR0_RR1_p1  
+ ----------------- Variant ID 
+ 20200   0    PASS     m_FVARIANT_rd   f_variant_var13_rd
+ 24600   0    PASS     p_psc_wr_u_q3   psc_wr_u_q3    
+ 24700   0    PASS     p_psc_rd_u_q3   psc_rd_u_q3    
+ 70400   0    PASS     a_BGTAPTRIM1_Meas bgbuf1_meas    
+
+ Number  Site Result   Test Name       Pin              Channel Low            Measured       High           Force          Loc
+ 70401   0    PASS     a_BGTAPTRIM1_Me ct_Cap_0         3       1.1640 V       1.1943 V       1.2360 V       3.6211 V       0       
+ 70500   0    PASS     a_BGTAPTRIM2_Meas bgbuf2_meas    
+ 70501   0    PASS     a_BGTAPTRIM2_Me ct_Cap_0         3       1.1640 V       1.1984 V       1.2360 V       3.6211 V       0       
+ 70000   0    PASS     a_vreg_max      vcap             46      1.6481 V       1.8656 V       1.9519 V       0.0000 A       0       
+ 82200   0    PASS     t_frctco_store_nom6 ffrcttrim_cal  
+ 82201   0    PASS     t_frctco_store_ pb15             61      0.0000         8.5736 M       10.0000 M      15.0000        0       
+ 82202   0    PASS     t_frctco_store_ pb15             61      0.0000         8.5332 M       10.0000 M      12.0000        0       
+ 82203   0    PASS     t_frctco_store_ pb15             61      0.0000         8.4932 M       10.0000 M      9.0000         0       
+ 82204   0    PASS     t_frctco_store_ pb15             61      0.0000         8.4512 M       10.0000 M      6.0000         0       
+ 82205   0    PASS     t_frctco_store_ pb15             61      0.0000         8.4120 M       10.0000 M      3.0000         0       
+ 82206   0    PASS     t_frctco_store_ pb15             61      0.0000         8.3712 M       10.0000 M      0.0000         0       
+ 82207   0    PASS     t_frctco_store_ pb15             61      0.0000         8.3324 M       10.0000 M      -3.0000        0       
+ 82208   0    PASS     t_frctco_store_ pb15             61      0.0000         8.2904 M       10.0000 M      -6.0000        0       
+ 82209   0    PASS     t_frctco_store_ pb15             61      0.0000         8.2496 M       10.0000 M      -9.0000        0       
+ 82210   0    PASS     t_frctco_store_ pb15             61      0.0000         8.2092 M       10.0000 M      -12.0000       0       
+ 82211   0    PASS     t_frctco_store_ pb15             61      0.0000         8.1672 M       10.0000 M      -15.0000       0       
+
+ Site Failed tests/Executed tests
+------------------------------------
+    0       2      29
+
+ Site    Sort     Bin
+------------------------------------
+    0     207       4
+=========================================================================

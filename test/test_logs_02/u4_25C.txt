@@ -1,0 +1,543 @@
+    Device#: 3
+
+
+ Number  Site Result   Test Name       Pattern
+ 1000    0    PASS     c_cont_vss      cont_vss       
+ 90000   0    PASS     w_reset_nom.0   hold_200us     
+ 90001   0    PASS     w_reset_nom.1   wft_hold_200us 
+------------------- Start Mchip Tests ------------------- 
+ 20700   0    FAIL     m_devrev_rd_A3  f_devrev_rd_A3 
+ 20800   0    PASS     m_devrev_rd_A4  f_devrev_rd_A4 
+ 33000   0    PASS     m_rd_CALCFG_tm10 m_rd_cal_tm10  
+
+		Site0
+========================
+--------------- CALIBRATION REGISTERS ---------------
+FVARIANT:	FF0D
+FFRCTRIM:	FFB2
+FFRCTTRIM:	F1
+FLPRCTRIM:	FF
+FDCOTRIM:	FF
+FADTRIM:	FC
+FBGTRIM:	00
+FBGTAPTRIM:	8C5F
+FFACOPT:	FFFE
+---------------------------------------------------
+ ----------------- Read RDN Registers  
+ 17806   0    PASS     w_rd_RR0_RR1_max rd_RR0_RR1_p1  
+ ----------------- Variant ID 
+ 20200   0    PASS     m_FVARIANT_rd   f_variant_var13_rd
+ 70400   0    PASS     a_BGTAPTRIM1_Meas bgbuf1_meas    
+
+ Number  Site Result   Test Name       Pin              Channel Low            Measured       High           Force          Loc
+ 70401   0    PASS     a_BGTAPTRIM1_Me ct_Cap_0         3       1.1640 V       1.1988 V       1.2360 V       3.6211 V       0       
+ 70500   0    PASS     a_BGTAPTRIM2_Meas bgbuf2_meas    
+ 70501   0    PASS     a_BGTAPTRIM2_Me ct_Cap_0         3       1.1640 V       1.1994 V       1.2360 V       3.6211 V       0       
+ 71500   0    PASS     a_lvdtp04h_max  lvdtp04h       
+ 71501   0    PASS     a_lvdtp04h_max  lvdtp04h       
+ 71502   0    PASS     a_lvdtp04h_max  lvdtp04h       
+ 71503   0    PASS     a_lvdtp04h_max  lvdtp04h       
+ 72000   0    PASS     a_lvdtp09h_max  lvdtp09h       
+ 72001   0    PASS     a_lvdtp09h_max  lvdtp09h       
+ 72002   0    PASS     a_lvdtp09h_max  lvdtp09h       
+ 72003   0    PASS     a_lvdtp09h_max  lvdtp09h       
+ 72500   0    PASS     a_lvdtp0eh_max  lvdtp0eh       
+ 72501   0    PASS     a_lvdtp0eh_max  lvdtp0eh       
+ 72502   0    PASS     a_lvdtp0eh_max  lvdtp0eh       
+ 72503   0    PASS     a_lvdtp0eh_max  lvdtp0eh       
+ 70000   0    PASS     a_vreg_max      vcap             46      1.6481 V       1.8744 V       1.9519 V       0.0000 A       0       
+ 82200   0    PASS     t_frctco_store_nom4 ffrcttrim_cal  
+ 82201   0    PASS     t_frctco_store_ pb15             61      0.0000         8.5740 M       10.0000 M      15.0000        0       
+ 82202   0    PASS     t_frctco_store_ pb15             61      0.0000         8.5228 M       10.0000 M      12.0000        0       
+ 82203   0    PASS     t_frctco_store_ pb15             61      0.0000         8.4708 M       10.0000 M      9.0000         0       
+ 82204   0    PASS     t_frctco_store_ pb15             61      0.0000         8.4176 M       10.0000 M      6.0000         0       
+ 82205   0    PASS     t_frctco_store_ pb15             61      0.0000         8.3660 M       10.0000 M      3.0000         0       
+ 82206   0    PASS     t_frctco_store_ pb15             61      0.0000         8.3120 M       10.0000 M      0.0000         0       
+ 82207   0    PASS     t_frctco_store_ pb15             61      0.0000         8.2620 M       10.0000 M      -3.0000        0       
+ 82208   0    PASS     t_frctco_store_ pb15             61      0.0000         8.2088 M       10.0000 M      -6.0000        0       
+ 82209   0    PASS     t_frctco_store_ pb15             61      0.0000         8.1544 M       10.0000 M      -9.0000        0       
+ 82210   0    PASS     t_frctco_store_ pb15             61      0.0000         8.1008 M       10.0000 M      -12.0000       0       
+ 82211   0    PASS     t_frctco_store_ pb15             61      0.0000         8.0472 M       10.0000 M      -15.0000       0       
+ 81100   0    PASS     t_FFRC_Meas_nom freq_FRC_Meas_t3
+ 81101   0    PASS     t_FFRC_Meas_nom pb15             0       7.9240 Mhz     8.0472 Mhz     8.0760 Mhz     0.0000         0       
+ 81200   0    PASS     t_LPRC_Meas_nom freq_LPRC_Meas_t3
+ 81201   0    PASS     t_LPRC_Meas_nom pb15             0       24.9888 Khz    30.1600 Khz    37.0112 Khz    0.0000         0       
+ 82700   0    PASS     t_osctune_lin_max freq_osctune_overlay
+ 82701   0    PASS     t_osctune_lin_m pb15             0       7.6814 Mhz     7.7416 Mhz     7.8282 Mhz     -32.0000 LSB   0       
+ 82702   0    PASS     t_osctune_lin_m pb15             0       7.9750 Mhz     8.0484 Mhz     8.1218 Mhz     0.0000 LSB     0       
+ 82703   0    PASS     t_osctune_lin_m pb15             0       7.9842 Mhz     8.0576 Mhz     8.1310 Mhz     1.0000 LSB     0       
+ 82704   0    PASS     t_osctune_lin_m pb15             0       7.9933 Mhz     8.0688 Mhz     8.1402 Mhz     2.0000 LSB     0       
+ 82705   0    PASS     t_osctune_lin_m pb15             0       8.0117 Mhz     8.0860 Mhz     8.1585 Mhz     4.0000 LSB     0       
+ 82706   0    PASS     t_osctune_lin_m pb15             0       8.0484 Mhz     8.1216 Mhz     8.1952 Mhz     8.0000 LSB     0       
+ 82707   0    PASS     t_osctune_lin_m pb15             0       8.1218 Mhz     8.2016 Mhz     8.2686 Mhz     16.0000 LSB    0       
+ 10000   0    PASS     f_scan_sa_max   sabc_a4_scan_sa_edt_ser_all
+ 46000   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    153.0927 uA    700.0000 uA    3.6200 V       0       
+ 46001   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    129.7837 uA    700.0000 uA    3.6200 V       0       
+ 46002   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    140.3136 uA    700.0000 uA    3.6200 V       0       
+ 46003   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    141.7960 uA    700.0000 uA    3.6200 V       0       
+ 46004   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    92.0854 uA     700.0000 uA    3.6200 V       0       
+ 46005   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    132.9018 uA    700.0000 uA    3.6200 V       0       
+ 46006   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    133.8985 uA    700.0000 uA    3.6200 V       0       
+ 46007   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    156.9776 uA    700.0000 uA    3.6200 V       0       
+ 46008   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    155.4185 uA    700.0000 uA    3.6200 V       0       
+ 46009   0    PASS     i_iddq_scan_max Vdd              2       -10.0000 uA    135.5087 uA    700.0000 uA    3.6200 V       0       
+ 39100   0    PASS     m_fuse_wr_jtagen_max fuse_addr_256kb
+ 39101   0    PASS     m_fuse_wr_jtagen_max wr_cfg_jtagen_oscodis_frc_11
+ 10100   0    PASS     f_jtag_max      pt_jtag_bst_test_svtg_44p_rev1
+ 10600   0    PASS     f_clksib_max    clk_sib_gpt1_ext_clk_intc_tmod3_svtg
+ 10400   0    PASS     f_cpu_max       pt_cpu_agu_svtg
+ 10401   0    PASS     f_cpu_max       pt_cpu_arith_trap_svtg
+ 10402   0    PASS     f_cpu_max       pt_cpu_branch_svtg
+ 10403   0    PASS     f_cpu_max       pt_cpu_call_svtg
+ 10404   0    PASS     f_cpu_max       pt_cpu_cov_svtg
+ 10405   0    PASS     f_cpu_max       pt_cpu_functional_svtg
+ 10406   0    PASS     f_cpu_max       pt_cpu_int_do_repeat_svtg
+ 10407   0    PASS     f_cpu_max       pt_cpu_return_svtg
+ 10408   0    PASS     f_cpu_max       pt_cpu_sp_err_svtg
+ 10700   0    PASS     f_clksib_min    clk_sib_gpt1_ext_clk_intc_tmod3_svtg
+ 10500   0    PASS     f_cpu_min       pt_cpu_agu_svtg
+ 10501   0    PASS     f_cpu_min       pt_cpu_arith_trap_svtg
+ 10502   0    PASS     f_cpu_min       pt_cpu_branch_svtg
+ 10503   0    PASS     f_cpu_min       pt_cpu_call_svtg
+ 10504   0    PASS     f_cpu_min       pt_cpu_cov_svtg
+ 10505   0    PASS     f_cpu_min       pt_cpu_functional_svtg
+ 10506   0    PASS     f_cpu_min       pt_cpu_int_do_repeat_svtg
+ 10507   0    PASS     f_cpu_min       pt_cpu_return_svtg
+ 10508   0    PASS     f_cpu_min       pt_cpu_sp_err_svtg
+ 11200   0    PASS     f_adc_anx_max   adc_ch_test_tmod11c_svtg_44p
+ 11400   0    PASS     f_ctmu_cmp_max  ctmu_cmp_tmod11c_svtg_c2inb
+ 11600   0    PASS     f_ctmu_adc_max  ctmu_temp_testing_tmod11c_svtg
+ 11800   0    PASS     f_cmp_input_path_max pt_cmp1_cmp2_input_paths_tmod11c_svtg
+ 11801   0    PASS     f_cmp_input_path_max pt_cmp3_input_paths_tmod11c_svtg
+ 25000   0    PASS     m_ram_max       pt_ram_FFFF    
+ 25001   0    PASS     m_ram_max       pt_ram_0000    
+ 25200   0    PASS     m_ram_ret_max   pt_ramret_AAAA 
+ 27200   0    PASS     m_ram_chkbd_max pt_ram_chkbd   
+ 27400   0    PASS     m_ram_ichkbd_max pt_ram_ichkbd  
+ 27600   0    PASS     m_ram_zigzag_max pt_ram_zigzag  
+ 25700   0    PASS     m_er_user_max   m_er_chip      
+ 28200   0    PASS     m_user_prog     SABC_user_prog 
+ 36800   0    PASS     m_fuse_wr_LPRC_max fuse_addr_256kb
+ 36801   0    PASS     m_fuse_wr_LPRC_max wr_cfg_LPRC    
+ 40000   0    PASS     i_idd_lprc_max  Vdd              2       -10.0000 uA    78.7062 uA     128.5000 uA    3.6200 V       0       
+
+ Number  Site Result   Test Name
+ 42100   0    PASS     i_idle_lprc_max iidle_exec_lprc
+ 42101   0    PASS     i_idle_lprc_max Vdd              2       -10.0000 uA    75.3185 uA     108.5000 uA    3.6200 V       0       
+ 42102   0    PASS     i_idle_lprc_max iidle_exec_lprc
+ 40200   0    PASS     i_idd_lprc_min  idd_exec_lprc  
+ 40201   0    PASS     i_idd_lprc_min  Vdd              2       -10.0000 uA    69.4055 uA     128.5000 uA    1.9800 V       0       
+ 40202   0    PASS     i_idd_lprc_min  idd_exec_lprc  
+ 42300   0    PASS     i_idle_lprc_min iidle_exec_lprc
+ 42301   0    PASS     i_idle_lprc_min Vdd              2       -10.0000 uA    64.0002 uA     108.5000 uA    1.9800 V       0       
+ 42302   0    PASS     i_idle_lprc_min iidle_exec_lprc
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 36600   0    PASS     m_fuse_wr_FRC_max fuse_addr_256kb
+ 36601   0    PASS     m_fuse_wr_FRC_max wr_cfg_FRC     
+ 40600   0    PASS     i_idd_frc_max   idd_exec_frc   
+ 40601   0    PASS     i_idd_frc_max   Vdd              2       -10.0000 uA    1.4741 mA      2.4650 mA      3.6200 V       0       
+ 40602   0    PASS     i_idd_frc_max   idd_exec_frc   
+ 42400   0    PASS     i_idle_frc_max  iidle_exec_frc 
+ 42401   0    PASS     i_idle_frc_max  Vdd              2       -10.0000 uA    365.4045 uA    1.0650 mA      3.6200 V       0       
+ 42402   0    PASS     i_idle_frc_max  iidle_exec_frc 
+ 40800   0    PASS     i_idd_frc_min   idd_exec_frc   
+ 40801   0    PASS     i_idd_frc_min   Vdd              2       -10.0000 uA    1.4619 mA      2.4650 mA      1.9800 V       0       
+ 40802   0    PASS     i_idd_frc_min   idd_exec_frc   
+ 42600   0    PASS     i_idle_frc_min  iidle_exec_frc 
+ 42601   0    PASS     i_idle_frc_min  Vdd              2       -10.0000 uA    354.6701 uA    1.0650 mA      1.9800 V       0       
+ 42602   0    PASS     i_idle_frc_min  iidle_exec_frc 
+ 44500   0    PASS     i_ipd_ret_max   ipd_ret_exec_vcap_frc
+ 44501   0    PASS     i_ipd_ret_max   Vdd              2       -10.0000 uA    1.1834 uA      1.8000 uA      3.6200 V       0       
+ 44502   0    PASS     i_ipd_ret_max   ipd_ret_exec_vcap_frc
+ 44600   0    PASS     i_ipd_ret_nom   ipd_ret_exec_vcap_frc
+ 44601   0    PASS     i_ipd_ret_nom   Vdd              2       -10.0000 uA    676.4334 nA    1.8000 uA      3.3200 V       0       
+ 44602   0    PASS     i_ipd_ret_nom   ipd_ret_exec_vcap_frc
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 37500   0    PASS     m_fuse_wr_ECnoPLL_wdtoff_max fuse_addr_256kb
+ 37501   0    PASS     m_fuse_wr_ECnoPLL_wdtoff_max wr_cfg_ECnoPLL_wdtboroff_3
+ 40900   0    PASS     i_idd_1MHz_max  idd_exec       
+ 40901   0    PASS     i_idd_1MHz_max  Vdd              2       -10.0000 uA    257.8148 uA    363.5000 uA    3.6200 V       0       
+ 40902   0    PASS     i_idd_1MHz_max  idd_exec       
+ 41800   0    PASS     i_idd_32MHz_max idd_exec       
+ 41801   0    PASS     i_idd_32MHz_max Vdd              2       -10.0000 uA    5.6356 mA      7.6650 mA      3.6200 V       0       
+ 41802   0    PASS     i_idd_32MHz_max idd_exec       
+ 42700   0    PASS     i_idle_1MHz_max iidle_exec     
+ 42701   0    PASS     i_idle_1MHz_max Vdd              2       -10.0000 uA    112.1463 uA    398.5000 uA    3.6200 V       0       
+ 42702   0    PASS     i_idle_1MHz_max iidle_exec     
+ 43600   0    PASS     i_idle_32MHz_max iidle_exec     
+ 43601   0    PASS     i_idle_32MHz_ma Vdd              2       -10.0000 uA    1.1951 mA      3.6650 mA      3.6200 V       0       
+ 43602   0    PASS     i_idle_32MHz_max iidle_exec     
+ 43900   0    PASS     i_ipd_base_max  ipd_exec_vcap  
+ 43901   0    PASS     i_ipd_base_max  Vdd              2       -10.0000 uA    5.7461 uA      9.8000 uA      3.6211 V       0       
+ 43902   0    PASS     i_ipd_base_max  ipd_exec_vcap  
+ 45100   0    PASS     i_ipd_wdt_max   ipd_wdt_exec_vcap
+ 45101   0    PASS     i_ipd_wdt_max   Vdd              2       -10.0000 uA    5.7283 uA      10.8000 uA     3.6200 V       0       
+ 45102   0    PASS     i_ipd_wdt_max   ipd_wdt_exec_vcap
+ 44200   0    PASS     i_ipd_rtcc_max  ipd_rtcc_exec_vcap
+ 44201   0    PASS     i_ipd_rtcc_max  Vdd              2       -10.0000 uA    5.6644 uA      10.8000 uA     3.6200 V       0       
+ 44202   0    PASS     i_ipd_rtcc_max  ipd_rtcc_exec_vcap
+ 44800   0    PASS     i_ipd_hlvd_max  ipd_hlvd_exec_vcap
+ 44801   0    PASS     i_ipd_hlvd_max  Vdd              2       -10.0000 uA    8.7918 uA      14.8000 uA     3.6200 V       0       
+ 44802   0    PASS     i_ipd_hlvd_max  ipd_hlvd_exec_vcap
+ 41100   0    PASS     i_idd_1MHz_min  idd_exec       
+ 41101   0    PASS     i_idd_1MHz_min  Vdd              2       -10.0000 uA    233.2381 uA    363.5000 uA    1.9800 V       0       
+ 41102   0    PASS     i_idd_1MHz_min  idd_exec       
+ 42000   0    PASS     i_idd_32MHz_min idd_exec       
+ 42001   0    PASS     i_idd_32MHz_min Vdd              2       -10.0000 uA    5.5314 mA      7.6650 mA      1.9800 V       0       
+ 42002   0    PASS     i_idd_32MHz_min idd_exec       
+ 42900   0    PASS     i_idle_1MHz_min iidle_exec     
+ 42901   0    PASS     i_idle_1MHz_min Vdd              2       -10.0000 uA    98.9185 uA     398.5000 uA    1.9800 V       0       
+ 42902   0    PASS     i_idle_1MHz_min iidle_exec     
+ 43800   0    PASS     i_idle_32MHz_min iidle_exec     
+ 43801   0    PASS     i_idle_32MHz_mi Vdd              2       -10.0000 uA    1.0928 mA      3.6650 mA      1.9800 V       0       
+ 43802   0    PASS     i_idle_32MHz_min iidle_exec     
+ 44100   0    PASS     i_ipd_base_min  ipd_exec_vcap  
+ 44101   0    PASS     i_ipd_base_min  Vdd              2       -10.0000 uA    4.9697 uA      9.8000 uA      1.9800 V       0       
+ 44102   0    PASS     i_ipd_base_min  ipd_exec_vcap  
+ 45300   0    PASS     i_ipd_wdt_min   ipd_wdt_exec_vcap
+ 45301   0    PASS     i_ipd_wdt_min   Vdd              2       -10.0000 uA    5.0067 uA      10.8000 uA     1.9800 V       0       
+ 45302   0    PASS     i_ipd_wdt_min   ipd_wdt_exec_vcap
+ 44400   0    PASS     i_ipd_rtcc_min  ipd_rtcc_exec_vcap
+ 44401   0    PASS     i_ipd_rtcc_min  Vdd              2       -10.0000 uA    5.0540 uA      10.8000 uA     1.9800 V       0       
+ 44402   0    PASS     i_ipd_rtcc_min  ipd_rtcc_exec_vcap
+ 45000   0    PASS     i_ipd_hlvd_min  ipd_hlvd_exec_vcap
+ 45001   0    PASS     i_ipd_hlvd_min  Vdd              2       -10.0000 uA    7.2172 uA      14.8000 uA     1.9800 V       0       
+ 45002   0    PASS     i_ipd_hlvd_min  ipd_hlvd_exec_vcap
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 25700   0    PASS     m_er_user_max   m_er_chip      
+ 28200   0    PASS     m_user_prog     SABC_user_prog 
+ 37100   0    PASS     m_fuse_wr_ECnoPLL_boron_max fuse_addr_256kb
+ 37101   0    PASS     m_fuse_wr_ECnoPLL_boron_max wr_cfg_ECnoPLL_boron
+ 37200   0    PASS     m_fuse_rd_ECnoPLL_boron_max rd_cfg_ECnoPLL_boron
+ 45900   0    PASS     i_ipd_bor_nom   ipd_bor_exec_vcap
+ 45901   0    PASS     i_ipd_bor_nom   Vdd              2       -10.0000 uA    8.6041 uA      9.8000 uA      3.3200 V       0       
+ 45902   0    PASS     i_ipd_bor_nom   ipd_bor_exec_vcap
+ 12500   0    PASS     f_user_bor_exe  user_bor_exec  
+ 34000   0    PASS     m_er_ADTRIM     m_er_ADTRIM    
+ 33200   0    PASS     m_ADTRIM_00_wr_max ADTRIM_00_wr   
+ 33300   0    PASS     m_ADTRIM_00_rd_max ADTRIM_00_rd   
+ 76600   0    PASS     a_adclin12b_par DNL              2       -2.0000        750.2137 m     2.0000         0.0000         0       
+ 76601   0    PASS     a_adclin12b_par DNL_Code         2       -1.0000        1.0230 K       4.0960 K       0.0000         0       
+ 76602   0    PASS     a_adclin12b_par INL              2       -2.0000        1.1573         2.0000         0.0000         0       
+ 76603   0    PASS     a_adclin12b_par INL_Code         2       -1.0000        2.3110 K       4.0960 K       0.0000         0       
+ 76604   0    PASS     a_adclin12b_par MC               2       0.0000         0.0000         0.0000         0.0000         0       
+ 76605   0    PASS     a_adclin12b_par Offset           2       -3.0000        250.0000 m     3.0000         0.0000         0       
+ 76606   0    PASS     a_adclin12b_par Gain_Error       2       -3.0000        500.0000 m     3.0000         0.0000         0       
+ 76607   0    PASS     a_adclin12b_par Abs_Error        2       -5.0000        1.1250         5.0000         0.0000         0       
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 38500   0    PASS     m_fuse_wr_8xPLL_max fuse_addr_256kb
+ 38501   0    PASS     m_fuse_wr_8xPLL_max wr_cfg_8xPLL_8 
+ 80200   0    PASS     t_EC_8xPLL_max  user_ecpll     
+ 80201   0    PASS     t_EC_8xPLL_max  pb3              63      1.2664 M       1.3333 M       1.3996 M       0.0000         0       
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 38700   0    PASS     m_fuse_wr_FRC4xPLL_max fuse_addr_256kb
+ 38701   0    PASS     m_fuse_wr_FRC4xPLL_max wr_cfg_FRC4xPLL_9
+ 80300   0    PASS     t_FRC_4xPLL_max user_frcpll    
+ 80301   0    PASS     t_FRC_4xPLL_max pb3              63      1.2664 M       1.3367 M       1.3996 M       0.0000         0       
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 36200   0    PASS     m_fuse_wr_MS_max fuse_addr_256kb
+ 36201   0    PASS     m_fuse_wr_MS_max wr_cfg_MS      
+ 82500   0    PASS     t_MS_max        user_clkmodes  
+ 82501   0    PASS     t_MS_max        pb3              63      395.2000 K     416.6667 K     436.8000 K     0.0000         0       
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 37900   0    PASS     m_fuse_wr_HS_max fuse_addr_256kb
+ 37901   0    PASS     m_fuse_wr_HS_max wr_cfg_HS_5    
+ 82600   0    PASS     t_HS_max        user_clkmodes  
+ 82601   0    PASS     t_HS_max        pb3              63      1.2664 M       1.3333 M       1.3996 M       0.0000         0       
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 39600   0    PASS     m_fuse_wr_sosc_max fuse_addr_256kb
+ 39601   0    PASS     m_fuse_wr_sosc_max wr_cfg_sosco   
+ 82400   0    PASS     t_SOSCI_max     user_sosc      
+ 82401   0    PASS     t_SOSCI_max     pb3              63      1.2664 K       1.3333 K       1.3996 K       0.0000         0       
+ 25700   0    PASS     m_er_user_max   m_er_chip      
+ 28000   0    PASS     m_hs_top_wr_max pt2_hs_top_prog_tm10_rdn
+ 37900   0    PASS     m_fuse_wr_HS_max fuse_addr_256kb
+ 37901   0    PASS     m_fuse_wr_HS_max wr_cfg_HS_5    
+ 12000   0    PASS     f_hs_exe_max    pt2_hs_exe     
+ 12100   0    PASS     f_hs_exe_min    pt2_hs_exe     
+ 12400   0    PASS     f_hs_exe_lvhf   pt2_hs_exe     
+                       a_cmp_offset_max Limit=0.0600 Labels: start1,start2,start3,start4,start5,start6  Src1Array: 3.4,3.4,2.0,2.0,0.5,0.5
+ 75700   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75701   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75702   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75703   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75704   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75705   0    PASS     a_cmp_offset_max pt_cmp_offset_tmod11c
+ 75800   0    PASS     a_cvref_max     pt_cvref_tmod11c
+ 75801   0    PASS     a_cvref_max     Samp0            3       -100.0000 mV   896.6515 uV    100.0000 mV    0.0000 V       0       
+ 75802   0    PASS     a_cvref_max     Samp1            3       13.7500 mV     114.8345 mV    213.7500 mV    0.0000 V       0       
+ 75803   0    PASS     a_cvref_max     Samp2            3       127.5000 mV    228.2987 mV    327.5000 mV    0.0000 V       0       
+ 75804   0    PASS     a_cvref_max     Samp3            3       241.2500 mV    341.5736 mV    441.2500 mV    0.0000 V       0       
+ 75805   0    PASS     a_cvref_max     Samp4            3       355.0000 mV    455.1326 mV    555.0000 mV    0.0000 V       0       
+ 75806   0    PASS     a_cvref_max     Samp5            3       468.7500 mV    568.5969 mV    668.7500 mV    0.0000 V       0       
+ 75807   0    PASS     a_cvref_max     Samp6            3       582.5000 mV    681.6823 mV    782.5000 mV    0.0000 V       0       
+ 75808   0    PASS     a_cvref_max     Samp7            3       696.2500 mV    794.9571 mV    896.2500 mV    0.0000 V       0       
+ 75809   0    PASS     a_cvref_max     Samp8            3       810.0000 mV    908.2319 mV    1.0100 V       0.0000 V       0       
+ 75810   0    PASS     a_cvref_max     Samp9            3       923.7500 mV    1.0215 V       1.1237 V       0.0000 V       0       
+ 75811   0    PASS     a_cvref_max     Samp10           3       1.0375 V       1.1349 V       1.2375 V       0.0000 V       0       
+ 75812   0    PASS     a_cvref_max     Samp11           3       1.1513 V       1.2480 V       1.3513 V       0.0000 V       0       
+ 75813   0    PASS     a_cvref_max     Samp12           3       1.2650 V       1.3613 V       1.4650 V       0.0000 V       0       
+ 75814   0    PASS     a_cvref_max     Samp13           3       1.3787 V       1.4741 V       1.5788 V       0.0000 V       0       
+ 75815   0    PASS     a_cvref_max     Samp14           3       1.4925 V       1.5871 V       1.6925 V       0.0000 V       0       
+ 75816   0    PASS     a_cvref_max     Samp15           3       1.6063 V       1.7002 V       1.8062 V       0.0000 V       0       
+ 75817   0    PASS     a_cvref_max     Samp16           3       1.7200 V       1.8137 V       1.9200 V       0.0000 V       0       
+ 75818   0    PASS     a_cvref_max     Samp17           3       1.8338 V       1.9274 V       2.0338 V       0.0000 V       0       
+ 75819   0    PASS     a_cvref_max     Samp18           3       1.9475 V       2.0410 V       2.1475 V       0.0000 V       0       
+ 75820   0    PASS     a_cvref_max     Samp19           3       2.0612 V       2.1544 V       2.2613 V       0.0000 V       0       
+ 75821   0    PASS     a_cvref_max     Samp20           3       2.1750 V       2.2674 V       2.3750 V       0.0000 V       0       
+ 75822   0    PASS     a_cvref_max     Samp21           3       2.2887 V       2.3810 V       2.4887 V       0.0000 V       0       
+ 75823   0    PASS     a_cvref_max     Samp22           3       2.4025 V       2.4946 V       2.6025 V       0.0000 V       0       
+ 75824   0    PASS     a_cvref_max     Samp23           3       2.5162 V       2.6083 V       2.7162 V       0.0000 V       0       
+ 75825   0    PASS     a_cvref_max     Samp24           3       2.6300 V       2.7222 V       2.8300 V       0.0000 V       0       
+ 75826   0    PASS     a_cvref_max     Samp25           3       2.7438 V       2.8363 V       2.9437 V       0.0000 V       0       
+ 75827   0    PASS     a_cvref_max     Samp26           3       2.8575 V       2.9502 V       3.0575 V       0.0000 V       0       
+ 75828   0    PASS     a_cvref_max     Samp27           3       2.9713 V       3.0644 V       3.1713 V       0.0000 V       0       
+ 75829   0    PASS     a_cvref_max     Samp28           3       3.0850 V       3.1786 V       3.2850 V       0.0000 V       0       
+ 75830   0    PASS     a_cvref_max     Samp29           3       3.1988 V       3.2928 V       3.3988 V       0.0000 V       0       
+ 75831   0    PASS     a_cvref_max     Samp30           3       3.3125 V       3.4076 V       3.5125 V       0.0000 V       0       
+ 75832   0    PASS     a_cvref_max     Samp31           3       3.4262 V       3.5219 V       3.6263 V       0.0000 V       0       
+ 72600   0    PASS     a_ctmu_r0_max   pb14             58      -715.0000 uA   -516.7532 uA   -290.0000 uA   0.0000 V       0       
+ 72900   0    PASS     a_ctmu_r1_max   pb14             58      -850.0000 nA   -527.7090 nA   -200.0000 nA   0.0000 V       0       
+ 73500   0    PASS     a_ctmu_r3_max   pb14             58      -71.5000 uA    -51.5386 uA    -38.5000 uA    0.0000 V       0       
+ 74100   0    PASS     a_ctmu_r5_max   pb14             58      -2.8600 mA     -2.1599 mA     -1.5400 mA     500.0000 mV    0       
+ 74400   0    PASS     a_ctmu_lin_r2_m 010000           32      5.0820 uA      6.7396 uA      9.4380 uA      0.0000 V       0       
+ 74401   0    PASS     a_ctmu_lin_r2_m 001000           16      4.4660 uA      5.9272 uA      8.2940 uA      0.0000 V       0       
+ 74402   0    PASS     a_ctmu_lin_r2_m 000100           8       4.1580 uA      5.4702 uA      7.7220 uA      0.0000 V       0       
+ 74403   0    PASS     a_ctmu_lin_r2_m 000010           4       4.0040 uA      5.2925 uA      7.4360 uA      0.0000 V       0       
+ 74404   0    PASS     a_ctmu_lin_r2_m 000001           2       3.9270 uA      5.2417 uA      7.2930 uA      0.0000 V       0       
+ 74405   0    PASS     a_ctmu_lin_r2_m 000000           0       3.8500 uA      5.1655 uA      7.1500 uA      0.0000 V       0       
+ 74406   0    PASS     a_ctmu_lin_r2_m 111111           -2      3.7730 uA      4.9624 uA      7.0070 uA      0.0000 V       0       
+ 74407   0    PASS     a_ctmu_lin_r2_m 111110           -4      3.6960 uA      4.9370 uA      6.8640 uA      0.0000 V       0       
+ 74408   0    PASS     a_ctmu_lin_r2_m 111100           -8      3.5420 uA      4.6577 uA      6.5780 uA      0.0000 V       0       
+ 74409   0    PASS     a_ctmu_lin_r2_m 111000           -16     3.2340 uA      4.3023 uA      6.0060 uA      0.0000 V       0       
+ 74410   0    PASS     a_ctmu_lin_r2_m 110000           -32     2.6180 uA      3.3883 uA      4.8620 uA      0.0000 V       0       
+ 75000   0    PASS     a_ctmu_ts_r3_ma pb14             58      0.0000 V       722.7811 mV    1.0000 V       0.0000 A       0       
+ 74700   0    PASS     a_ctmu_ts_r2_ma pb14             58      0.0000 V       663.0051 mV    1.0000 V       0.0000 A       0       
+ 75300   0    PASS     a_ctmu_ts_r1_ma pb14             58      0.0000 V       603.1690 mV    1.0000 V       0.0000 A       0       
+ 50000   0    PASS     f_voh_vol_max.0 pt_port_voh_vol_tmod11
+ 50001   0    PASS     f_voh_vol_max.1 pt_port_voh_vol_tmod11c
+ 50100   0    PASS     f_voh_vol_min.0 pt_port_voh_vol_tmod11
+ 50101   0    PASS     f_voh_vol_min.1 pt_port_voh_vol_tmod11c
+ 50200   0    PASS     f_vih_vil_max.0 pt_portb_dspace_tmod11
+ 50201   0    PASS     f_vih_vil_max.1 pt_porta_dspace_tmod11c_44p
+ 50202   0    PASS     f_vih_vil_max.1 pt_portb_dspace_tmod11c
+ 50203   0    PASS     f_vih_vil_max.1 pt_portc_dspace_tmod11c_44p
+ 50300   0    PASS     f_vih_vil_min.0 pt_portb_dspace_tmod11
+ 50301   0    PASS     f_vih_vil_min.1 pt_porta_dspace_tmod11c_44p
+ 50302   0    PASS     f_vih_vil_min.1 pt_portb_dspace_tmod11c
+ 50303   0    PASS     f_vih_vil_min.1 pt_portc_dspace_tmod11c_44p
+ 50500   0    PASS     l_pullup_nom.0  pa3              15      -450.0000 uA   -220.9074 uA   -150.0000 uA   0.0000 V       0       
+ 50501   0    PASS     l_pullup_nom.0  pa4              18      -450.0000 uA   -224.5813 uA   -150.0000 uA   0.0000 V       0       
+ 50502   0    PASS     l_pullup_nom.0  pa7              25      -450.0000 uA   -225.7110 uA   -150.0000 uA   0.0000 V       0       
+ 50503   0    PASS     l_pullup_nom.0  pa8              29      -450.0000 uA   -219.7068 uA   -150.0000 uA   0.0000 V       0       
+ 50504   0    PASS     l_pullup_nom.0  pa9              30      -450.0000 uA   -226.2007 uA   -150.0000 uA   0.0000 V       0       
+ 50505   0    PASS     l_pullup_nom.0  pa10             26      -450.0000 uA   -225.1134 uA   -150.0000 uA   0.0000 V       0       
+ 50506   0    PASS     l_pullup_nom.0  pb2              5       -450.0000 uA   -220.6655 uA   -150.0000 uA   0.0000 V       0       
+ 50507   0    PASS     l_pullup_nom.0  pb3              63      -450.0000 uA   -220.8017 uA   -150.0000 uA   0.0000 V       0       
+ 50508   0    PASS     l_pullup_nom.0  pb4              16      -450.0000 uA   -221.2874 uA   -150.0000 uA   0.0000 V       0       
+ 50509   0    PASS     l_pullup_nom.0  pb5              20      -450.0000 uA   -181.1127 uA   -150.0000 uA   0.0000 V       0       
+ 50510   0    PASS     l_pullup_nom.0  pb6              1       -450.0000 uA   -181.0775 uA   -150.0000 uA   0.0000 V       0       
+ 50511   0    PASS     l_pullup_nom.0  pb7              21      -450.0000 uA   -181.0338 uA   -150.0000 uA   0.0000 V       0       
+ 50512   0    PASS     l_pullup_nom.0  pb8              3       -450.0000 uA   -182.3782 uA   -150.0000 uA   0.0000 V       0       
+ 50513   0    PASS     l_pullup_nom.0  pb9              4       -450.0000 uA   -224.8889 uA   -150.0000 uA   0.0000 V       0       
+ 50514   0    PASS     l_pullup_nom.0  pb10             24      -450.0000 uA   -185.1434 uA   -150.0000 uA   0.0000 V       0       
+ 50515   0    PASS     l_pullup_nom.0  pb11             9       -450.0000 uA   -184.6763 uA   -150.0000 uA   0.0000 V       0       
+ 50516   0    PASS     l_pullup_nom.0  pb12             55      -450.0000 uA   -222.5453 uA   -150.0000 uA   0.0000 V       0       
+ 50517   0    PASS     l_pullup_nom.0  pb13             10      -450.0000 uA   -222.4725 uA   -150.0000 uA   0.0000 V       0       
+ 50518   0    PASS     l_pullup_nom.0  pb14             58      -450.0000 uA   -223.2787 uA   -150.0000 uA   0.0000 V       0       
+ 50519   0    PASS     l_pullup_nom.0  pb15             61      -450.0000 uA   -222.6343 uA   -150.0000 uA   0.0000 V       0       
+ 50520   0    PASS     l_pullup_nom.0  pc0              12      -450.0000 uA   -219.1658 uA   -150.0000 uA   0.0000 V       0       
+ 50521   0    PASS     l_pullup_nom.0  pc1              27      -450.0000 uA   -219.7278 uA   -150.0000 uA   0.0000 V       0       
+ 50522   0    PASS     l_pullup_nom.0  pc2              13      -450.0000 uA   -220.8632 uA   -150.0000 uA   0.0000 V       0       
+ 50523   0    PASS     l_pullup_nom.0  pc3              19      -450.0000 uA   -225.5171 uA   -150.0000 uA   0.0000 V       0       
+ 50524   0    PASS     l_pullup_nom.0  pc4              31      -450.0000 uA   -226.1133 uA   -150.0000 uA   0.0000 V       0       
+ 50525   0    PASS     l_pullup_nom.0  pc5              17      -450.0000 uA   -225.8723 uA   -150.0000 uA   0.0000 V       0       
+ 50526   0    PASS     l_pullup_nom.0  pc6              22      -450.0000 uA   -181.6924 uA   -150.0000 uA   0.0000 V       0       
+ 50527   0    PASS     l_pullup_nom.0  pc7              6       -450.0000 uA   -182.4751 uA   -150.0000 uA   0.0000 V       0       
+ 50528   0    PASS     l_pullup_nom.0  pc8              23      -450.0000 uA   -184.9326 uA   -150.0000 uA   0.0000 V       0       
+ 50529   0    PASS     l_pullup_nom.0  pc9              7       -450.0000 uA   -183.0234 uA   -150.0000 uA   0.0000 V       0       
+ 50530   0    PASS     l_pullup_nom.1  pb0              8       -450.0000 uA   -273.4679 uA   -150.0000 uA   0.0000 V       0       
+ 50531   0    PASS     l_pullup_nom.1  pb1              2       -450.0000 uA   -270.7091 uA   -150.0000 uA   0.0000 V       0       
+ 50532   0    PASS     l_pullup_nom.1  pa1              14      -450.0000 uA   -271.4699 uA   -150.0000 uA   0.0000 V       0       
+ 50533   0    PASS     l_pullup_nom.1  pa0              11      -450.0000 uA   -273.6593 uA   -150.0000 uA   0.0000 V       0       
+ 50800   0    PASS     l_pulldn_nom.0  pa3              15      230.0000 uA    287.0790 uA    500.0000 uA    3.3200 V       0       
+ 50801   0    PASS     l_pulldn_nom.0  pa4              18      230.0000 uA    309.3025 uA    500.0000 uA    3.3200 V       0       
+ 50802   0    PASS     l_pulldn_nom.0  pa7              25      230.0000 uA    310.2947 uA    500.0000 uA    3.3200 V       0       
+ 50803   0    PASS     l_pulldn_nom.0  pa8              29      230.0000 uA    282.8631 uA    500.0000 uA    3.3200 V       0       
+ 50804   0    PASS     l_pulldn_nom.0  pa9              30      230.0000 uA    286.0953 uA    500.0000 uA    3.3200 V       0       
+ 50805   0    PASS     l_pulldn_nom.0  pa10             26      230.0000 uA    309.6487 uA    500.0000 uA    3.3200 V       0       
+ 50806   0    PASS     l_pulldn_nom.0  pb2              5       230.0000 uA    286.2693 uA    500.0000 uA    3.3200 V       0       
+ 50807   0    PASS     l_pulldn_nom.0  pb3              63      230.0000 uA    284.2404 uA    500.0000 uA    3.3200 V       0       
+ 50808   0    PASS     l_pulldn_nom.0  pb4              16      230.0000 uA    308.7558 uA    500.0000 uA    3.3200 V       0       
+ 50809   0    PASS     l_pulldn_nom.0  pb5              20      230.0000 uA    292.8609 uA    500.0000 uA    3.3200 V       0       
+ 50810   0    PASS     l_pulldn_nom.0  pb6              1       230.0000 uA    294.6138 uA    500.0000 uA    3.3200 V       0       
+ 50811   0    PASS     l_pulldn_nom.0  pb7              21      230.0000 uA    302.4509 uA    500.0000 uA    3.3200 V       0       
+ 50812   0    PASS     l_pulldn_nom.0  pb8              3       230.0000 uA    290.8902 uA    500.0000 uA    3.3200 V       0       
+ 50813   0    PASS     l_pulldn_nom.0  pb9              4       230.0000 uA    288.9450 uA    500.0000 uA    3.3200 V       0       
+ 50814   0    PASS     l_pulldn_nom.0  pb10             24      230.0000 uA    314.8565 uA    500.0000 uA    3.3200 V       0       
+ 50815   0    PASS     l_pulldn_nom.0  pb11             9       230.0000 uA    314.2806 uA    500.0000 uA    3.3200 V       0       
+ 50816   0    PASS     l_pulldn_nom.0  pb12             55      230.0000 uA    307.5056 uA    500.0000 uA    3.3200 V       0       
+ 50817   0    PASS     l_pulldn_nom.0  pb13             10      230.0000 uA    312.2429 uA    500.0000 uA    3.3200 V       0       
+ 50818   0    PASS     l_pulldn_nom.0  pb14             58      230.0000 uA    311.2419 uA    500.0000 uA    3.3200 V       0       
+ 50819   0    PASS     l_pulldn_nom.0  pb15             61      230.0000 uA    309.8655 uA    500.0000 uA    3.3200 V       0       
+ 50820   0    PASS     l_pulldn_nom.0  pc0              12      230.0000 uA    307.8380 uA    500.0000 uA    3.3200 V       0       
+ 50821   0    PASS     l_pulldn_nom.0  pc1              27      230.0000 uA    313.2480 uA    500.0000 uA    3.3200 V       0       
+ 50822   0    PASS     l_pulldn_nom.0  pc2              13      230.0000 uA    310.5747 uA    500.0000 uA    3.3200 V       0       
+ 50823   0    PASS     l_pulldn_nom.0  pc3              19      230.0000 uA    311.9341 uA    500.0000 uA    3.3200 V       0       
+ 50824   0    PASS     l_pulldn_nom.0  pc4              31      230.0000 uA    309.3645 uA    500.0000 uA    3.3200 V       0       
+ 50825   0    PASS     l_pulldn_nom.0  pc5              17      230.0000 uA    306.1368 uA    500.0000 uA    3.3200 V       0       
+ 50826   0    PASS     l_pulldn_nom.0  pc6              22      230.0000 uA    311.0401 uA    500.0000 uA    3.3200 V       0       
+ 50827   0    PASS     l_pulldn_nom.0  pc7              6       230.0000 uA    312.9254 uA    500.0000 uA    3.3200 V       0       
+ 50828   0    PASS     l_pulldn_nom.0  pc8              23      230.0000 uA    305.4297 uA    500.0000 uA    3.3200 V       0       
+ 50829   0    PASS     l_pulldn_nom.0  pc9              7       230.0000 uA    311.2631 uA    500.0000 uA    3.3200 V       0       
+ 50830   0    PASS     l_pulldn_nom.1  pb0              8       230.0000 uA    313.1863 uA    500.0000 uA    3.3200 V       0       
+ 50831   0    PASS     l_pulldn_nom.1  pb1              2       230.0000 uA    312.6498 uA    500.0000 uA    3.3200 V       0       
+ 50832   0    PASS     l_pulldn_nom.1  pa1              14      230.0000 uA    306.9210 uA    500.0000 uA    3.3200 V       0       
+ 50833   0    PASS     l_pulldn_nom.1  pa0              11      230.0000 uA    310.5407 uA    500.0000 uA    3.3200 V       0       
+ 51000   0    PASS     l_open_drain_max pt_open_drain_t11
+ 51001   0    PASS     l_open_drain_max pt_open_drain_t11c
+ 51100   0    PASS     l_open_drain_min pt_open_drain_t11
+ 51101   0    PASS     l_open_drain_min pt_open_drain_t11c
+ 51200   0    PASS     l_vox_osco_ec_max pt_vox_osco_EC_tmod3
+ 51800   0    PASS     l_vox_osco_ec_min pt_vox_osco_EC_tmod3
+ 26500   0    PASS     m_er_fuse_max   m_er_page_cfg_256kb
+ 37700   0    PASS     m_fuse_wr_jtagdis_max fuse_addr_256kb
+ 37701   0    PASS     m_fuse_wr_jtagdis_max wr_cfg_JTAGdis_4
+ 60400   0    PASS     k_leak_max_44L.0 44L_leakage    
+ 60401   0    PASS     k_leak_max_44L. pb9              4       -918.0000 nA   -960.7959 pA   918.0000 nA    3.6200 V       0       
+ 60402   0    PASS     k_leak_max_44L. pc7              6       -918.0000 nA   -347.7779 pA   918.0000 nA    3.6200 V       0       
+ 60403   0    PASS     k_leak_max_44L. pc9              7       -918.0000 nA   -983.2523 pA   918.0000 nA    3.6200 V       0       
+ 60404   0    PASS     k_leak_max_44L. pb11             9       -918.0000 nA   -132.7289 pA   918.0000 nA    3.6200 V       0       
+ 60405   0    PASS     k_leak_max_44L. pb13             10      -918.0000 nA   -553.0081 pA   918.0000 nA    3.6200 V       0       
+ 60406   0    PASS     k_leak_max_44L. pa7              25      -918.0000 nA   -1.1356 nA     918.0000 nA    3.6200 V       0       
+ 60407   0    PASS     k_leak_max_44L. pb15             61      -918.0000 nA   -870.2576 pA   918.0000 nA    3.6200 V       0       
+ 60408   0    PASS     k_leak_max_44L. pa0              11      -918.0000 nA   -249.0161 pA   918.0000 nA    3.6200 V       0       
+ 60409   0    PASS     k_leak_max_44L. pb0              8       -918.0000 nA   -574.5656 pA   918.0000 nA    3.6200 V       0       
+ 60410   0    PASS     k_leak_max_44L. pb2              5       -918.0000 nA   -668.3779 pA   918.0000 nA    3.6200 V       0       
+ 60411   0    PASS     k_leak_max_44L. pc0              12      -918.0000 nA   -420.3027 pA   918.0000 nA    3.6200 V       0       
+ 60412   0    PASS     k_leak_max_44L. pc2              13      -918.0000 nA   -256.7080 pA   918.0000 nA    3.6200 V       0       
+ 60413   0    PASS     k_leak_max_44L. pa3              15      -918.0000 nA   -637.9246 pA   918.0000 nA    3.6200 V       0       
+ 60414   0    PASS     k_leak_max_44L. pb4              16      -918.0000 nA   -768.2207 pA   918.0000 nA    3.6200 V       0       
+ 60415   0    PASS     k_leak_max_44L. pa9              30      -918.0000 nA   -170.9432 pA   918.0000 nA    3.6200 V       0       
+ 60416   0    PASS     k_leak_max_44L. pc4              31      -918.0000 nA   -434.8128 pA   918.0000 nA    3.6200 V       0       
+ 60417   0    PASS     k_leak_max_44L. pb5              20      -918.0000 nA   -217.4518 pA   918.0000 nA    3.6200 V       0       
+ 60418   0    PASS     k_leak_max_44L. pb7              21      -918.0000 nA   -1.0306 nA     918.0000 nA    3.6200 V       0       
+ 60419   0    PASS     k_leak_max_44L.1 44L_leakage    
+ 60420   0    PASS     k_leak_max_44L. pc6              22      -918.0000 nA   -909.8478 pA   918.0000 nA    3.6200 V       0       
+ 60421   0    PASS     k_leak_max_44L. pc8              23      -918.0000 nA   -888.8942 pA   918.0000 nA    3.6200 V       0       
+ 60422   0    PASS     k_leak_max_44L. pb10             24      -918.0000 nA   -285.4249 pA   918.0000 nA    3.6200 V       0       
+ 60423   0    PASS     k_leak_max_44L. pb12             55      -918.0000 nA   -1.1995 nA     918.0000 nA    3.6200 V       0       
+ 60424   0    PASS     k_leak_max_44L. pa10             26      -918.0000 nA   -609.7857 pA   918.0000 nA    3.6200 V       0       
+ 60425   0    PASS     k_leak_max_44L. pb14             58      -918.0000 nA   -815.4280 pA   918.0000 nA    3.6200 V       0       
+ 60426   0    PASS     k_leak_max_44L. pa1              14      -918.0000 nA   359.7766 pA    918.0000 nA    3.6200 V       0       
+ 60427   0    PASS     k_leak_max_44L. pb1              2       -918.0000 nA   -1.3434 nA     918.0000 nA    3.6200 V       0       
+ 60428   0    PASS     k_leak_max_44L. pb3              63      -918.0000 nA   -859.3473 pA   918.0000 nA    3.6200 V       0       
+ 60429   0    PASS     k_leak_max_44L. pc1              27      -918.0000 nA   388.7361 pA    918.0000 nA    3.6200 V       0       
+ 60430   0    PASS     k_leak_max_44L. pa2              28      -918.0000 nA   -463.0572 pA   918.0000 nA    3.6200 V       0       
+ 60431   0    PASS     k_leak_max_44L. pa8              29      -918.0000 nA   -842.8591 pA   918.0000 nA    3.6200 V       0       
+ 60432   0    PASS     k_leak_max_44L. pa4              18      -918.0000 nA   -734.8796 pA   918.0000 nA    3.6200 V       0       
+ 60433   0    PASS     k_leak_max_44L. pc3              19      -918.0000 nA   -1.2903 nA     918.0000 nA    3.6200 V       0       
+ 60434   0    PASS     k_leak_max_44L. pc5              17      -918.0000 nA   -1.3744 nA     918.0000 nA    3.6200 V       0       
+ 60435   0    PASS     k_leak_max_44L. pb6              1       -918.0000 nA   -1.0885 nA     918.0000 nA    3.6200 V       0       
+ 60436   0    PASS     k_leak_max_44L. pb8              3       -918.0000 nA   -1.0924 nA     918.0000 nA    3.6200 V       0       
+ 60500   0    PASS     k_leak_min_44L.0 44L_leakage    
+ 60501   0    PASS     k_leak_min_44L. pb9              4       -918.0000 nA   41.9223 pA     918.0000 nA    0.0000 V       0       
+ 60502   0    PASS     k_leak_min_44L. pc7              6       -918.0000 nA   150.8310 pA    918.0000 nA    0.0000 V       0       
+ 60503   0    PASS     k_leak_min_44L. pc9              7       -918.0000 nA   -232.4298 pA   918.0000 nA    0.0000 V       0       
+ 60504   0    PASS     k_leak_min_44L. pb11             9       -918.0000 nA   119.7224 pA    918.0000 nA    0.0000 V       0       
+ 60505   0    PASS     k_leak_min_44L. pb13             10      -918.0000 nA   -48.9914 pA    918.0000 nA    0.0000 V       0       
+ 60506   0    PASS     k_leak_min_44L. pa7              25      -918.0000 nA   -122.6734 pA   918.0000 nA    0.0000 V       0       
+ 60507   0    PASS     k_leak_min_44L. pb15             61      -918.0000 nA   -119.8134 pA   918.0000 nA    0.0000 V       0       
+ 60508   0    PASS     k_leak_min_44L. pa0              11      -918.0000 nA   -748.4354 pA   918.0000 nA    0.0000 V       0       
+ 60509   0    PASS     k_leak_min_44L. pb0              8       -918.0000 nA   -325.1365 pA   918.0000 nA    0.0000 V       0       
+ 60510   0    PASS     k_leak_min_44L. pb2              5       -918.0000 nA   85.1773 pA     918.0000 nA    0.0000 V       0       
+ 60511   0    PASS     k_leak_min_44L. pc0              12      -918.0000 nA   1.0752 nA      918.0000 nA    0.0000 V       0       
+ 60512   0    PASS     k_leak_min_44L. pc2              13      -918.0000 nA   -6.9045 pA     918.0000 nA    0.0000 V       0       
+ 60513   0    PASS     k_leak_min_44L. pa3              15      -918.0000 nA   115.4429 pA    918.0000 nA    0.0000 V       0       
+ 60514   0    PASS     k_leak_min_44L. pb4              16      -918.0000 nA   236.1292 pA    918.0000 nA    0.0000 V       0       
+ 60515   0    PASS     k_leak_min_44L. pa9              30      -918.0000 nA   -170.9432 pA   918.0000 nA    0.0000 V       0       
+ 60516   0    PASS     k_leak_min_44L. pc4              31      -918.0000 nA   -185.2906 pA   918.0000 nA    0.0000 V       0       
+ 60517   0    PASS     k_leak_min_44L. pb5              20      -918.0000 nA   787.4086 pA    918.0000 nA    0.0000 V       0       
+ 60518   0    PASS     k_leak_min_44L. pb7              21      -918.0000 nA   -280.0894 pA   918.0000 nA    0.0000 V       0       
+ 60519   0    PASS     k_leak_min_44L.1 44L_leakage    
+ 60520   0    PASS     k_leak_min_44L. pc6              22      -918.0000 nA   -661.7650 pA   918.0000 nA    0.0000 V       0       
+ 60521   0    PASS     k_leak_min_44L. pc8              23      -918.0000 nA   120.9810 pA    918.0000 nA    0.0000 V       0       
+ 60522   0    PASS     k_leak_min_44L. pb10             24      -918.0000 nA   468.1754 pA    918.0000 nA    0.0000 V       0       
+ 60523   0    PASS     k_leak_min_44L. pb12             55      -918.0000 nA   59.2589 pA     918.0000 nA    0.0000 V       0       
+ 60524   0    PASS     k_leak_min_44L. pa10             26      -918.0000 nA   -112.1993 pA   918.0000 nA    0.0000 V       0       
+ 60525   0    PASS     k_leak_min_44L. pb14             58      -918.0000 nA   188.9919 pA    918.0000 nA    0.0000 V       0       
+ 60526   0    PASS     k_leak_min_44L. pa1              14      -918.0000 nA   108.2912 pA    918.0000 nA    0.0000 V       0       
+ 60527   0    PASS     k_leak_min_44L. pb1              2       -918.0000 nA   408.7094 pA    918.0000 nA    0.0000 V       0       
+ 60528   0    PASS     k_leak_min_44L. pb3              63      -918.0000 nA   142.9906 pA    918.0000 nA    0.0000 V       0       
+ 60529   0    PASS     k_leak_min_44L. pc1              27      -918.0000 nA   388.7361 pA    918.0000 nA    0.0000 V       0       
+ 60530   0    PASS     k_leak_min_44L. pa2              28      -918.0000 nA   -463.0572 pA   918.0000 nA    0.0000 V       0       
+ 60531   0    PASS     k_leak_min_44L. pa8              29      -918.0000 nA   -96.0148 pA    918.0000 nA    0.0000 V       0       
+ 60532   0    PASS     k_leak_min_44L. pa4              18      -918.0000 nA   -485.4500 pA   918.0000 nA    0.0000 V       0       
+ 60533   0    PASS     k_leak_min_44L. pc3              19      -918.0000 nA   -532.6168 pA   918.0000 nA    0.0000 V       0       
+ 60534   0    PASS     k_leak_min_44L. pc5              17      -918.0000 nA   118.1287 pA    918.0000 nA    0.0000 V       0       
+ 60535   0    PASS     k_leak_min_44L. pb6              1       -918.0000 nA   -591.9251 pA   918.0000 nA    0.0000 V       0       
+ 60536   0    PASS     k_leak_min_44L. pb8              3       -918.0000 nA   -85.4625 pA    918.0000 nA    0.0000 V       0       
+ 60600   0    PASS     k_leak_5_max_44L.0 44L_leakage    
+ 60601   0    PASS     k_leak_5_max_44 pc7              6       -918.0000 nA   -1.0957 nA     918.0000 nA    5.5000 V       0       
+ 60602   0    PASS     k_leak_5_max_44 pc9              7       -918.0000 nA   -983.2523 pA   918.0000 nA    5.5000 V       0       
+ 60603   0    PASS     k_leak_5_max_44 pb11             9       -918.0000 nA   -637.6315 pA   918.0000 nA    5.5000 V       0       
+ 60604   0    PASS     k_leak_5_max_44 pb5              20      -918.0000 nA   -468.6669 pA   918.0000 nA    5.5000 V       0       
+ 60605   0    PASS     k_leak_5_max_44 pb7              21      -918.0000 nA   -1.0306 nA     918.0000 nA    5.5000 V       0       
+ 60606   0    PASS     k_leak_5_max_44L.1 44L_leakage    
+ 60607   0    PASS     k_leak_5_max_44 pc6              22      -918.0000 nA   -413.6822 pA   918.0000 nA    5.5000 V       0       
+ 60608   0    PASS     k_leak_5_max_44 pc8              23      -918.0000 nA   -1.3938 nA     918.0000 nA    5.5000 V       0       
+ 60609   0    PASS     k_leak_5_max_44 pb10             24      -918.0000 nA   -536.6249 pA   918.0000 nA    5.5000 V       0       
+ 60610   0    PASS     k_leak_5_max_44 pb6              1       -918.0000 nA   -1.3368 nA     918.0000 nA    5.5000 V       0       
+ 60611   0    PASS     k_leak_5_max_44 pb8              3       -918.0000 nA   -1.3442 nA     918.0000 nA    5.5000 V       0       
+ 60700   0    PASS     k_leak_5_min_44L.0 44L_leakage    
+ 60701   0    PASS     k_leak_5_min_44 pc7              6       -918.0000 nA   -98.4734 pA    918.0000 nA    0.0000 V       0       
+ 60702   0    PASS     k_leak_5_min_44 pc9              7       -918.0000 nA   17.8444 pA     918.0000 nA    0.0000 V       0       
+ 60703   0    PASS     k_leak_5_min_44 pb11             9       -918.0000 nA   119.7224 pA    918.0000 nA    0.0000 V       0       
+ 60704   0    PASS     k_leak_5_min_44 pb5              20      -918.0000 nA   787.4086 pA    918.0000 nA    0.0000 V       0       
+ 60705   0    PASS     k_leak_5_min_44 pb7              21      -918.0000 nA   470.4471 pA    918.0000 nA    0.0000 V       0       
+ 60706   0    PASS     k_leak_5_min_44L.1 44L_leakage    
+ 60707   0    PASS     k_leak_5_min_44 pc6              22      -918.0000 nA   82.4833 pA     918.0000 nA    0.0000 V       0       
+ 60708   0    PASS     k_leak_5_min_44 pc8              23      -918.0000 nA   120.9810 pA    918.0000 nA    0.0000 V       0       
+ 60709   0    PASS     k_leak_5_min_44 pb10             24      -918.0000 nA   216.9753 pA    918.0000 nA    0.0000 V       0       
+ 60710   0    PASS     k_leak_5_min_44 pb6              1       -918.0000 nA   -95.3266 pA    918.0000 nA    0.0000 V       0       
+ 60711   0    PASS     k_leak_5_min_44 pb8              3       -918.0000 nA   -85.4625 pA    918.0000 nA    0.0000 V       0       
+ 25700   0    PASS     m_er_user_max   m_er_chip      
+ 81100   0    PASS     t_FFRC_Meas_nom freq_FRC_Meas_t3
+ 81101   0    PASS     t_FFRC_Meas_nom pb15             0       7.9240 Mhz     8.0512 Mhz     8.0760 Mhz     0.0000         0       
+ 81200   0    PASS     t_LPRC_Meas_nom freq_LPRC_Meas_t3
+ 81201   0    PASS     t_LPRC_Meas_nom pb15             0       24.9888 Khz    30.1600 Khz    37.0112 Khz    0.0000         0       
+ 25900   0    PASS     m_rd_1s_max     m_rd_1s_tm10_256kb
+ 20200   0    PASS     m_FVARIANT_rd   f_variant_var13_rd
+ 39500   0    PASS     m_PLLKEN_rd_max PLLKEN_rd      
+ 22200   0    PASS     m_DieSerial_BlankCheck m_stv_dieserial_tmod3
+ 22201	 0	PASS	rd_LotID	918333015000
+ 22202	 0	PASS	Scribe	000015
+ 22203	 0	PASS	X_Coord	000251
+ 22204	 0	PASS	Y_Coord	000231
+ 22300   0    PASS     m_DieSerial_datalog m_stv_dieserial_tmod3
+ 22301	 0    PASS	LotID: 918333015000	Scribe: 000015  X: 000251  Y: 000231
+ 33000   0    PASS     m_rd_CALCFG_tm10 m_rd_cal_tm10  
+
+		Site0
+========================
+--------------- CALIBRATION REGISTERS ---------------
+FVARIANT:	FF0D
+FFRCTRIM:	FFB2
+FFRCTTRIM:	F1
+FLPRCTRIM:	FF
+FDCOTRIM:	FF
+FADTRIM:	FC
+FBGTRIM:	00
+FBGTAPTRIM:	8C5F
+FFACOPT:	FFFE
+---------------------------------------------------
+ ----------------- Passcode End  
+
+ Site Failed tests/Executed tests
+------------------------------------
+    0       1     488
+
+ Site    Sort     Bin
+------------------------------------
+    0       2       2
+=========================================================================

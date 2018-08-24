@@ -1,6 +1,4 @@
 # ignore everything
-*
+.pytest_cache/
+__pycache__/
 !.gitignore
-
-# excep python files
-!*.py
